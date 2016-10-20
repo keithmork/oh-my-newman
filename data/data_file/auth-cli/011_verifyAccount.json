@@ -1,0 +1,110 @@
+[
+  {
+    "_title": "患者",
+    "_description": "",
+    "_statusCode": 200,
+    "_timeout": 5000,
+    "_mustHave": [
+      { "elementPath": "json.data", "type": "object", "value": "" },
+      { "elementPath": "json.data.accountNum", "type": "string", "value": "" },
+      { "elementPath": "json.data.accountType", "type": "string", "value": "tel" },
+      { "elementPath": "json.data.id", "type": "object", "value": "" },
+      { "elementPath": "json.data.id.counter", "type": "number", "value": "" },
+      { "elementPath": "json.data.password", "type": "string", "value": "" },
+      { "elementPath": "json.data.userId", "type": "number", "value": "" },
+      { "elementPath": "json.data.userType", "type": "number", "value": 1 },
+      { "elementPath": "json.resultCode", "type": "number", "value": 1 }
+    ],
+    "_mustNotHave": [
+      { "elementPath": "", "type": "", "value": "" }
+    ],
+    "accountNum": "{{PATIENT_MOBILE}}",
+    "password": "{{PWD_LOGIN}}",
+    "userType": "1"
+  },
+  {
+    "_title": "【非法】账号不存在",
+    "_description": "",
+    "_statusCode": 200,
+    "_timeout": 5000,
+    "_mustHave": [
+      { "elementPath": "json.detailMsg", "type": "string", "value": "" },
+      { "elementPath": "json.resultCode", "type": "number", "value": "" }
+    ],
+    "_mustNotHave": [
+      { "elementPath": "json.data", "type": "object", "value": "" },
+      { "elementPath": "json.resultCode", "type": "", "value": 1 }
+    ],
+    "accountNum": "{{$guid}}",
+    "password": "{{PWD_LOGIN}}",
+    "userType": "1"
+  },
+  {
+    "_title": "【非法】密码为空",
+    "_description": "",
+    "_statusCode": 200,
+    "_timeout": 5000,
+    "_mustHave": [
+      { "elementPath": "json.detailMsg", "type": "string", "value": "" },
+      { "elementPath": "json.resultCode", "type": "number", "value": "" }
+    ],
+    "_mustNotHave": [
+      { "elementPath": "json.data", "type": "object", "value": "" },
+      { "elementPath": "json.resultCode", "type": "", "value": 1 }
+    ],
+    "accountNum": "{{PATIENT_MOBILE}}",
+    "password": "",
+    "userType": "1"
+  },
+  {
+    "_title": "【非法】密码不匹配",
+    "_description": "注入删库",
+    "_statusCode": 200,
+    "_timeout": 5000,
+    "_mustHave": [
+      { "elementPath": "json.detailMsg", "type": "string", "value": "" },
+      { "elementPath": "json.resultCode", "type": "number", "value": "" }
+    ],
+    "_mustNotHave": [
+      { "elementPath": "json.data", "type": "object", "value": "" },
+      { "elementPath": "json.resultCode", "type": "", "value": 1 }
+    ],
+    "accountNum": "{{PATIENT_MOBILE}}",
+    "password": "db.Auth.drop()",
+    "userType": "1"
+  },
+  {
+    "_title": "【非法】用户类型为空",
+    "_description": "",
+    "_statusCode": 200,
+    "_timeout": 5000,
+    "_mustHave": [
+      { "elementPath": "json.detailMsg", "type": "string", "value": "" },
+      { "elementPath": "json.resultCode", "type": "number", "value": "" }
+    ],
+    "_mustNotHave": [
+      { "elementPath": "json.data", "type": "object", "value": "" },
+      { "elementPath": "json.resultCode", "type": "", "value": 1 }
+    ],
+    "accountNum": "{{PATIENT_MOBILE}}",
+    "password": "{{PWD_LOGIN}}",
+    "userType": ""
+  },
+  {
+    "_title": "【非法】用户类型不匹配",
+    "_description": "如果跑失败了，先怀疑数据问题",
+    "_statusCode": 200,
+    "_timeout": 5000,
+    "_mustHave": [
+      { "elementPath": "json.detailMsg", "type": "string", "value": "" },
+      { "elementPath": "json.resultCode", "type": "number", "value": "" }
+    ],
+    "_mustNotHave": [
+      { "elementPath": "json.data", "type": "object", "value": "" },
+      { "elementPath": "json.resultCode", "type": "", "value": 1 }
+    ],
+    "accountNum": "{{DRUG_MOBILE}}",
+    "password": "{{PWD_LOGIN}}",
+    "userType": 3
+  }
+]

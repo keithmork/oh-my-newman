@@ -1,0 +1,125 @@
+[
+  {
+    "_title": "【不明确】账号为空",
+    "_description": "",
+    "_statusCode": 200,
+    "_timeout": 5000,
+    "_mustHave": [
+      { "elementPath": "json.resultCode", "type": "number", "value": 1 }
+    ],
+    "_mustNotHave": [
+      { "elementPath": "", "type": "", "value": "" }
+    ],
+    "accountNum": "",
+    "userType": 1,
+    "unionid": "{{uuid}}"
+  },
+  {
+    "_title": "微信注册-患者",
+    "_description": "",
+    "_statusCode": 200,
+    "_timeout": 5000,
+    "_mustHave": [
+      { "elementPath": "json.resultCode", "type": "number", "value": 1 }
+    ],
+    "_mustNotHave": [
+      { "elementPath": "", "type": "", "value": "" }
+    ],
+    "accountNum": "{{randomMobile}}",
+    "userType": 1,
+    "unionid": "{{uuid}}"
+  },
+  {
+    "_title": "微信注册-医生",
+    "_description": "",
+    "_statusCode": 200,
+    "_timeout": 5000,
+    "_mustHave": [
+      { "elementPath": "json.resultCode", "type": "number", "value": 1 }
+    ],
+    "_mustNotHave": [
+      { "elementPath": "", "type": "", "value": "" }
+    ],
+    "accountNum": "{{randomMobile}}",
+    "userType": 3,
+    "unionid": "{{uuid}}"
+  },
+  {
+    "_title": "微信注册-运营",
+    "_description": "",
+    "_statusCode": 200,
+    "_timeout": 5000,
+    "_mustHave": [
+      { "elementPath": "json.resultCode", "type": "number", "value": 1 }
+    ],
+    "_mustNotHave": [
+      { "elementPath": "", "type": "", "value": "" }
+    ],
+    "accountNum": "{{randomMobile}}",
+    "userType": 4,
+    "unionid": "{{uuid}}"
+  },
+  {
+    "_title": "微信注册-药企人员",
+    "_description": "",
+    "_statusCode": 200,
+    "_timeout": 5000,
+    "_mustHave": [
+      { "elementPath": "json.resultCode", "type": "number", "value": 1 }
+    ],
+    "_mustNotHave": [
+      { "elementPath": "", "type": "", "value": "" }
+    ],
+    "accountNum": "{{randomMobile}}",
+    "userType": 10,
+    "unionid": "{{uuid}}"
+  },
+  {
+    "_title": "【非法】用户类型为空",
+    "_description": "",
+    "_statusCode": 200,
+    "_timeout": 5000,
+    "_mustHave": [
+      { "elementPath": "json.detailMsg", "type": "string", "value": "" },
+      { "elementPath": "json.resultCode", "type": "number", "value": "" }
+    ],
+    "_mustNotHave": [
+      { "elementPath": "json.resultCode", "type": "number", "value": 1 }
+    ],
+    "accountNum": "{{randomMobile}}",
+    "userType": "",
+    "unionid": "{{uuid}}"
+  },
+  {
+    "_title": "【非法】unionid为空",
+    "_description": "",
+    "_statusCode": 200,
+    "_timeout": 5000,
+    "_mustHave": [
+      { "elementPath": "json.detailMsg", "type": "string", "value": "" },
+      { "elementPath": "json.resultCode", "type": "number", "value": "" }
+    ],
+    "_mustNotHave": [
+      { "elementPath": "json.resultCode", "type": "number", "value": 1 }
+    ],
+    "accountNum": "{{randomMobile}}",
+    "userType": 1,
+    "unionid": ""
+  },
+  {
+    "_title": "【非法】所有参数为空",
+    "_description": "",
+    "_statusCode": 200,
+    "_timeout": 5000,
+    "_mustHave": [
+      { "elementPath": "json.detailMsg", "type": "string", "value": "" },
+      { "elementPath": "json.resultCode", "type": "number", "value": "" }
+    ],
+    "_mustNotHave": [
+      { "elementPath": "json.resultCode", "type": "number", "value": 1 }
+    ],
+    "accountNum": "",
+    "userType": "",
+    "unionid": ""
+  }
+]

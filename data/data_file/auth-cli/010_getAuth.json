@@ -1,0 +1,85 @@
+[
+  {
+    "_title": "手机注册-患者",
+    "_description": "",
+    "_statusCode": 200,
+    "_timeout": 5000,
+    "_mustHave": [
+      { "elementPath": "json.data", "type": "object", "value": "" },
+      { "elementPath": "json.data.accountNum", "type": "string", "value": "" },
+      { "elementPath": "json.data.accountType", "type": "string", "value": "tel" },
+      { "elementPath": "json.data.id", "type": "object", "value": "" },
+      { "elementPath": "json.data.id.counter", "type": "number", "value": "" },
+      { "elementPath": "json.data.password", "type": "string", "value": "" },
+      { "elementPath": "json.data.userId", "type": "number", "value": "" },
+      { "elementPath": "json.data.userType", "type": "number", "value": 1 },
+      { "elementPath": "json.resultCode", "type": "number", "value": 1 }
+    ],
+    "_mustNotHave": [
+      { "elementPath": "", "type": "", "value": "" }
+    ],
+    "accountType": "tel",
+    "accountNum": "{{PATIENT_MOBILE}}",
+    "userType": "1"
+  },
+  {
+    "_title": "【非法】账号类型为空",
+    "_description": "",
+    "_statusCode": 200,
+    "_timeout": 5000,
+    "_mustHave": [
+      { "elementPath": "json.resultCode", "type": "number", "value": 1 }
+    ],
+    "_mustNotHave": [
+      { "elementPath": "json.data", "type": "object", "value": "" }
+    ],
+    "accountType": "",
+    "accountNum": "{{PATIENT_MOBILE}}",
+    "userType": "1"
+  },
+  {
+    "_title": "【非法】用户类型为空",
+    "_description": "",
+    "_statusCode": 200,
+    "_timeout": 5000,
+    "_mustHave": [
+      { "elementPath": "json.resultCode", "type": "number", "value": 1 }
+    ],
+    "_mustNotHave": [
+      { "elementPath": "json.data", "type": "object", "value": "" }
+    ],
+    "accountType": "tel",
+    "accountNum": "{{PATIENT_MOBILE}}",
+    "userType": ""
+  },
+  {
+    "_title": "【非法】所有参数为空",
+    "_description": "",
+    "_statusCode": 200,
+    "_timeout": 5000,
+    "_mustHave": [
+      { "elementPath": "json.resultCode", "type": "number", "value": 1 }
+    ],
+    "_mustNotHave": [
+      { "elementPath": "json.data", "type": "object", "value": "" }
+    ],
+    "accountType": "",
+    "accountNum": "",
+    "userType": ""
+  },
+  {
+    "_title": "【非法】用户类型不匹配",
+    "_description": "如果跑失败了，先怀疑数据问题",
+    "_statusCode": 200,
+    "_timeout": 5000,
+    "_mustHave": [
+      { "elementPath": "json.resultCode", "type": "number", "value": 1 }
+    ],
+    "_mustNotHave": [
+      { "elementPath": "json.data", "type": "object", "value": "" }
+    ],
+    "accountType": "tel",
+    "accountNum": "{{DRUG_MOBILE}}",
+    "userType": 3
+  }
+]

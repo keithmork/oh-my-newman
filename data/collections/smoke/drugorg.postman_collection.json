@@ -1,0 +1,88 @@
+{
+	"variables": [],
+	"info": {
+		"name": "drugorg",
+		"_postman_id": "681c87ac-a116-2c84-eb2b-3614d78367fc",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "001_register",
+			"description": "",
+			"item": []
+		},
+		{
+			"name": "002_login",
+			"description": "",
+			"item": [
+				{
+					"name": "/drugorg/auth/login 药企登录",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": "const assertEqual = (name, actual, expected) => {\r\n  tests[`Expect ${name} to equal ${expected}, actual: ${actual}`] = actual === expected;\r\n};\r\nconst assertNotEqual = (name, actual, expected) => {\r\n  tests[`Expect ${name} not to equal ${expected}, actual: ${actual}`] = actual !== expected;\r\n};\r\nconst assertType = (name, value, type) => {\r\n  tests[`Expect ${name} to be ${type}: ${value}`] = typeof value === type;\r\n};\r\nconst assertTimeout = (name, actual, timeout) => {\r\n  tests[`Expect ${name} to be no more than ${timeout} ms, actual: ${actual} ms`] = actual <= timeout;\r\n};\r\nconst assertFail = msg => tests[msg] = false;\r\nconst printInfo = (msg, value) => tests[`[INFO] ${msg}: ${value}`] = true;\r\nconst setEnvVar = (name, value) => postman.setEnvironmentVariable(name, value);\r\n\r\n// 通用部分\r\nprintInfo('Request params', JSON.stringify(request.data));\r\nassertTimeout('response time', responseTime, environment.RESPONSE_TIMEOUT);\r\nassertEqual('status code', responseCode.code, 200);\r\n\r\nlet json;\r\ntry {\r\n  json = JSON.parse(responseBody);\r\n} catch (err) {\r\n  assertFail('Expect response body to be valid JSON');\r\n  printInfo('Response body', responseBody);\r\n  console.error(err);\r\n}\r\n\r\n// 项目通用的断言\r\nif (json) {\r\n  const { resultCode, resultMsg, detailMsg } = json;\r\n  assertEqual('resultCode', resultCode, 1);\r\n\r\n  if (resultMsg) printInfo('msg', resultMsg);\r\n  if (detailMsg) printInfo('msg', detailMsg);\r\n}\r\n\r\n// 具体接口相关的断言\r\nconst expected = {\r\n  mobile: environment.DRUGORG_MOBILE,\r\n};\r\n\r\nif (json && json.data) {\r\n  const { access_token, access_context, userId, drugCompany, majorUser } = json.data;\r\n  assertType('access_token', access_token, 'string');\r\n  assertType('access_context', access_context, 'string');\r\n  assertType('userId', userId, 'number');\r\n  assertType('drugCompany', drugCompany, 'object');\r\n  assertType('majorUser', majorUser, 'object');\r\n\r\n  if (drugCompany) {\r\n    const { creator, id } = drugCompany;\r\n    assertType('creator', creator, 'number');\r\n    assertType('id', id, 'string');\r\n  }\r\n  \r\n  if (majorUser) {\r\n    const { drugCompanyId, employeeId, id, openId, orgId, telephone, userId } = majorUser;\r\n    assertType('drugCompanyId', drugCompanyId, 'string');\r\n    assertType('employeeId', employeeId, 'string');\r\n    assertType('id', id, 'string');\r\n    assertType('openId', openId, 'string');\r\n    assertType('orgId', orgId, 'string');\r\n    assertEqual('mobile', telephone, expected.mobile);\r\n    assertEqual('userId', userId, json.data.userId);\r\n  }\r\n} else {\r\n  assertFail('Expect response body to have data');\r\n}\r\n"
+							}
+						}
+					],
+					"request": {
+						"url": "{{APP_SERVER}}/drugorg/auth/login",
+						"method": "POST",
+						"header": [
+							{
+								"key": "User-Agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "telephone",
+									"value": "{{DRUGORG_MOBILE}}",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "password",
+									"value": "{{PWD_LOGIN}}",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "userType",
+									"value": "10",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "device",
+									"value": "iPhone",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "model",
+									"value": "ios",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "serial",
+									"value": "2503ba4a918c1d8b23822f3e16b179b578af47f48340b9ce1ec6482527d460e8",
+									"type": "text",
+									"enabled": true
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

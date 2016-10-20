@@ -1,0 +1,137 @@
+[
+  {
+    "_title": "【不明确】密码为空",
+    "_description": "",
+    "_statusCode": 200,
+    "_timeout": 5000,
+    "_mustHave": [
+      { "elementPath": "json.data", "type": "number", "value": "" },
+      { "elementPath": "json.resultCode", "type": "number", "value": 1 }
+    ],
+    "_mustNotHave": [
+      { "elementPath": "", "type": "", "value": "" }
+    ],
+    "accountType": "tel",
+    "accountNum": "{{randomMobile}}",
+    "password": "",
+    "userType": 1
+  }, 
+  {
+    "_title": "手机注册-患者",
+    "_description": "",
+    "_statusCode": 200,
+    "_timeout": 5000,
+    "_mustHave": [
+      { "elementPath": "json.data", "type": "number", "value": "" },
+      { "elementPath": "json.resultCode", "type": "number", "value": 1 }
+    ],
+    "_mustNotHave": [
+      { "elementPath": "", "type": "", "value": "" }
+    ],
+    "accountType": "tel",
+    "accountNum": "{{randomMobile}}",
+    "password": "{{PWD_LOGIN}}",
+    "userType": 1
+  }, 
+  {
+    "_title": "【非法】账号类型为空",
+    "_description": "",
+    "_statusCode": 200,
+    "_timeout": 5000,
+    "_mustHave": [
+      { "elementPath": "json.detailMsg", "type": "string", "value": "" },
+      { "elementPath": "json.resultCode", "type": "number", "value": "" }
+    ],
+    "_mustNotHave": [
+      { "elementPath": "json.resultCode", "type": "number", "value": 1 }
+    ],
+    "accountType": "",
+    "accountNum": "{{randomMobile}}",
+    "password": "{{PWD_LOGIN}}",
+    "userType": 1
+  }, 
+  {
+    "_title": "【非法】账号为空",
+    "_description": "",
+    "_statusCode": 200,
+    "_timeout": 5000,
+    "_mustHave": [
+      { "elementPath": "json.detailMsg", "type": "string", "value": "" },
+      { "elementPath": "json.resultCode", "type": "number", "value": "" }
+    ],
+    "_mustNotHave": [
+      { "elementPath": "json.resultCode", "type": "number", "value": 1 }
+    ],
+    "accountType": "tel",
+    "accountNum": "",
+    "password": "{{PWD_LOGIN}}",
+    "userType": 1
+  }, 
+  {
+    "_title": "【非法】用户类型为空",
+    "_description": "",
+    "_statusCode": 200,
+    "_timeout": 5000,
+    "_mustHave": [
+      { "elementPath": "json.detailMsg", "type": "string", "value": "" },
+      { "elementPath": "json.resultCode", "type": "number", "value": "" }
+    ],
+    "_mustNotHave": [
+      { "elementPath": "json.resultCode", "type": "number", "value": 1 }
+    ],
+    "accountType": "tel",
+    "accountNum": "{{randomMobile}}",
+    "password": "{{PWD_LOGIN}}",
+    "userType": ""
+  }, 
+  {
+    "_title": "【非法】所有参数为空",
+    "_description": "",
+    "_statusCode": 200,
+    "_timeout": 5000,
+    "_mustHave": [
+      { "elementPath": "json.detailMsg", "type": "string", "value": "" },
+      { "elementPath": "json.resultCode", "type": "number", "value": "" }
+    ],
+    "_mustNotHave": [
+      { "elementPath": "json.resultCode", "type": "number", "value": 1 }
+    ],
+    "accountType": "",
+    "accountNum": "",
+    "password": "",
+    "userType": ""
+  },
+  {
+    "_title": "【非法】账号类型不存在",
+    "_description": "注入",
+    "_statusCode": 200,
+    "_timeout": 5000,
+    "_mustHave": [
+      { "elementPath": "json.detailMsg", "type": "string", "value": "" },
+      { "elementPath": "json.resultCode", "type": "number", "value": "" }
+    ],
+    "_mustNotHave": [
+      { "elementPath": "json.resultCode", "type": "number", "value": 1 }
+    ],
+    "accountType": "db.Auth.drop()",
+    "accountNum": "{{randomMobile}}",
+    "password": "{{PWD_LOGIN}}",
+    "userType": 1
+  }, {
+    "_title": "【非法】用户类型不存在",
+    "_description": "注入",
+    "_statusCode": 200,
+    "_timeout": 5000,
+    "_mustHave": [
+      { "elementPath": "json.detailMsg", "type": "string", "value": "" },
+      { "elementPath": "json.resultCode", "type": "number", "value": "" }
+    ],
+    "_mustNotHave": [
+      { "elementPath": "json.resultCode", "type": "number", "value": 1 }
+    ],
+    "accountType": "tel",
+    "accountNum": "{{randomMobile}}",
+    "password": "{{PWD_LOGIN}}",
+    "userType": "db.Auth.drop()"
+  }
+]

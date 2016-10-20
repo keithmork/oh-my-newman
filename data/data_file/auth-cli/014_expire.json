@@ -1,0 +1,47 @@
+[
+  {
+    "_title": "【不明确】access token为空",
+    "_description": "目前传什么都成功……",
+    "_statusCode": 200,
+    "_timeout": 5000,
+    "_mustHave": [
+      { "elementPath": "json.data", "type": "boolean", "value": true },
+      { "elementPath": "json.resultCode", "type": "number", "value": 1 }
+    ],
+    "_mustNotHave": [
+      { "elementPath": "", "type": "", "value": "" }
+    ],
+    "accessToken": "",
+    "ttl": 86400
+  }, 
+  {
+    "_title": "【不明确】ttl为空",
+    "_description": "",
+    "_statusCode": 200,
+    "_timeout": 5000,
+    "_mustHave": [
+      { "elementPath": "json.data", "type": "boolean", "value": true },
+      { "elementPath": "json.resultCode", "type": "number", "value": 1 }
+    ],
+    "_mustNotHave": [
+      { "elementPath": "", "type": "", "value": "" }
+    ],
+    "accessToken": "",
+    "ttl": ""
+  }, 
+  {
+    "_title": "【不明确】所有参数为空",
+    "_description": "",
+    "_statusCode": 200,
+    "_timeout": 5000,
+    "_mustHave": [
+      { "elementPath": "json.data", "type": "boolean", "value": true },
+      { "elementPath": "json.resultCode", "type": "number", "value": 1 }
+    ],
+    "_mustNotHave": [
+      { "elementPath": "", "type": "", "value": "" }
+    ],
+    "accessToken": "",
+    "ttl": ""
+  }
+]

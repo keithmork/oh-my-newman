@@ -1,0 +1,275 @@
+{
+	"variables": [],
+	"info": {
+		"name": "auth-regression",
+		"_postman_id": "37d517e4-88c7-7ead-f783-ffa574c9882c",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "_unused",
+			"description": "",
+			"item": [
+				{
+					"name": "/auth/login",
+					"request": {
+						"url": "{{APP_SERVER}}/auth/login",
+						"method": "POST",
+						"header": [
+							{
+								"key": "User-Agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "accountType",
+									"value": "{{ACCOUNT_TYPE_MOBILE}}",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "accountNum",
+									"value": "{{patient_mobile}}",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "password",
+									"value": "{{LOGIN_PASSWORD}}",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "userType",
+									"value": "{{USER_TYPE_PATIENT}}",
+									"type": "text",
+									"enabled": true
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "mobile",
+			"description": "",
+			"item": [
+				{
+					"name": "/auth/updateTel",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": "const assertEqual = (name, actual, expected) => {\n  tests[`Expect ${name} to equal ${expected}, actual: ${actual}`] = actual === expected;\n};\nconst assertNotEqual = (name, actual, expected) => {\n  tests[`Expect ${name} not to equal ${expected}, actual: ${actual}`] = actual !== expected;\n};\nconst assertType = (name, value, type) => {\n  if (type === 'array') {\n    tests[`Expect ${name} to be ${type}: ${value}`] = Array.isArray(value);\n  } else {\n    tests[`Expect ${name} to be ${type}: ${value}`] = typeof value === type;\n  }\n};\nconst assertTimeout = (name, actual, time) => {\n  const timeout = time || 10000;\n  tests[`Expect ${name} to be no more than ${timeout} ms, actual: ${actual} ms`] = actual <= timeout;\n};\nconst assertFail = msg => tests[msg] = false;\nconst printInfo = (msg, value) => tests[`[INFO] ${msg}: ${value}`] = true;\nconst setEnvVar = (name, value) => postman.setEnvironmentVariable(name, value);\n\n// 通用部分\nprintInfo('Request params', JSON.stringify(request.data));\nassertTimeout('response time', responseTime, environment.RESPONSE_TIMEOUT);\nassertEqual('status code', responseCode.code, 200);\n\nlet json;\ntry {\n  json = JSON.parse(responseBody);\n} catch (err) {\n  assertFail('Expect response body to be valid JSON');\n  printInfo('Response body', responseBody);\n  console.error(err);\n}\n\n// 项目通用的断言\nif (json) {\n  const { resultCode, resultMsg, detailMsg } = json;\n  assertEqual('resultCode', resultCode, 1);\n\n  if (resultMsg) printInfo('msg', resultMsg);\n  if (detailMsg) printInfo('msg', detailMsg);\n}\n\n// 具体接口相关的断言\nif (json && (json.data !== undefined)) {\n  assertEqual('data', json.data, true);\n} else {\n  assertFail('Expect response body to have data');\n}\n"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": "const randInt = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;\n\n// 随机手机\nconst randomMobile = '14' + randInt(100000000, 999999999);\npostman.setEnvironmentVariable('randomMobile', randomMobile);\n"
+							}
+						}
+					],
+					"request": {
+						"url": "{{APP_SERVER}}/auth/updateTel",
+						"method": "POST",
+						"header": [
+							{
+								"key": "User-Agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "accountNum",
+									"value": "{{randomMobile}}",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "userId",
+									"value": "{{PATIENT2_USERID}}",
+									"type": "text",
+									"enabled": true
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "/auth/updateTel - 改回来",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": "const assertEqual = (name, actual, expected) => {\n  tests[`Expect ${name} to equal ${expected}, actual: ${actual}`] = actual === expected;\n};\nconst assertNotEqual = (name, actual, expected) => {\n  tests[`Expect ${name} not to equal ${expected}, actual: ${actual}`] = actual !== expected;\n};\nconst assertType = (name, value, type) => {\n  if (type === 'array') {\n    tests[`Expect ${name} to be ${type}: ${value}`] = Array.isArray(value);\n  } else {\n    tests[`Expect ${name} to be ${type}: ${value}`] = typeof value === type;\n  }\n};\nconst assertTimeout = (name, actual, time) => {\n  const timeout = time || 10000;\n  tests[`Expect ${name} to be no more than ${timeout} ms, actual: ${actual} ms`] = actual <= timeout;\n};\nconst assertFail = msg => tests[msg] = false;\nconst printInfo = (msg, value) => tests[`[INFO] ${msg}: ${value}`] = true;\nconst setEnvVar = (name, value) => postman.setEnvironmentVariable(name, value);\n\n// 通用部分\nprintInfo('Request params', JSON.stringify(request.data));\nassertTimeout('response time', responseTime, environment.RESPONSE_TIMEOUT);\nassertEqual('status code', responseCode.code, 200);\n\nlet json;\ntry {\n  json = JSON.parse(responseBody);\n} catch (err) {\n  assertFail('Expect response body to be valid JSON');\n  printInfo('Response body', responseBody);\n  console.error(err);\n}\n\n// 项目通用的断言\nif (json) {\n  const { resultCode, resultMsg, detailMsg } = json;\n  assertEqual('resultCode', resultCode, 1);\n\n  if (resultMsg) printInfo('msg', resultMsg);\n  if (detailMsg) printInfo('msg', detailMsg);\n}\n\n// 具体接口相关的断言\nif (json && (json.data !== undefined)) {\n  assertEqual('data', json.data, true);\n} else {\n  assertFail('Expect response body to have data');\n}\n"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": "const sleep = (milliseconds) => {\n const start = new Date().getTime();\n while (new Date().getTime() <= start + milliseconds) {}\n};\n\nsleep(2000);\n"
+							}
+						}
+					],
+					"request": {
+						"url": "{{APP_SERVER}}/auth/updateTel",
+						"method": "POST",
+						"header": [
+							{
+								"key": "User-Agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "accountNum",
+									"value": "{{PATIENT2_MOBILE}}",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "userId",
+									"value": "{{PATIENT2_USERID}}",
+									"type": "text",
+									"enabled": true
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "password",
+			"description": "",
+			"item": [
+				{
+					"name": "/auth/updatePwd",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": "const assertEqual = (name, actual, expected) => {\n  tests[`Expect ${name} to equal ${expected}, actual: ${actual}`] = actual === expected;\n};\nconst assertNotEqual = (name, actual, expected) => {\n  tests[`Expect ${name} not to equal ${expected}, actual: ${actual}`] = actual !== expected;\n};\nconst assertType = (name, value, type) => {\n  if (type === 'array') {\n    tests[`Expect ${name} to be ${type}: ${value}`] = Array.isArray(value);\n  } else {\n    tests[`Expect ${name} to be ${type}: ${value}`] = typeof value === type;\n  }\n};\nconst assertTimeout = (name, actual, time) => {\n  const timeout = time || 10000;\n  tests[`Expect ${name} to be no more than ${timeout} ms, actual: ${actual} ms`] = actual <= timeout;\n};\nconst assertFail = msg => tests[msg] = false;\nconst printInfo = (msg, value) => tests[`[INFO] ${msg}: ${value}`] = true;\nconst setEnvVar = (name, value) => postman.setEnvironmentVariable(name, value);\n\n// 通用部分\nprintInfo('Request params', JSON.stringify(request.data));\nassertTimeout('response time', responseTime, environment.RESPONSE_TIMEOUT);\nassertEqual('status code', responseCode.code, 200);\n\nlet json;\ntry {\n  json = JSON.parse(responseBody);\n} catch (err) {\n  assertFail('Expect response body to be valid JSON');\n  printInfo('Response body', responseBody);\n  console.error(err);\n}\n\n// 项目通用的断言\nif (json) {\n  const { resultCode, resultMsg, detailMsg } = json;\n  assertEqual('resultCode', resultCode, 1);\n\n  if (resultMsg) printInfo('msg', resultMsg);\n  if (detailMsg) printInfo('msg', detailMsg);\n}\n\n// 具体接口相关的断言\nif (json && (json.data !== undefined)) {\n  assertEqual('data', json.data, true);\n} else {\n  assertFail('Expect response body to have data');\n}\n"
+							}
+						}
+					],
+					"request": {
+						"url": "{{APP_SERVER}}/auth/updatePwd",
+						"method": "POST",
+						"header": [
+							{
+								"key": "User-Agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "userId",
+									"value": "{{PATIENT2_USERID}}",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "oldPwd",
+									"value": "{{PWD_LOGIN}}",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "newPwd",
+									"value": "J1@g0ngz1",
+									"type": "text",
+									"enabled": true
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "/auth/updatePwd-改回来",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": "const assertEqual = (name, actual, expected) => {\n  tests[`Expect ${name} to equal ${expected}, actual: ${actual}`] = actual === expected;\n};\nconst assertNotEqual = (name, actual, expected) => {\n  tests[`Expect ${name} not to equal ${expected}, actual: ${actual}`] = actual !== expected;\n};\nconst assertType = (name, value, type) => {\n  if (type === 'array') {\n    tests[`Expect ${name} to be ${type}: ${value}`] = Array.isArray(value);\n  } else {\n    tests[`Expect ${name} to be ${type}: ${value}`] = typeof value === type;\n  }\n};\nconst assertTimeout = (name, actual, time) => {\n  const timeout = time || 10000;\n  tests[`Expect ${name} to be no more than ${timeout} ms, actual: ${actual} ms`] = actual <= timeout;\n};\nconst assertFail = msg => tests[msg] = false;\nconst printInfo = (msg, value) => tests[`[INFO] ${msg}: ${value}`] = true;\nconst setEnvVar = (name, value) => postman.setEnvironmentVariable(name, value);\n\n// 通用部分\nprintInfo('Request params', JSON.stringify(request.data));\nassertTimeout('response time', responseTime, environment.RESPONSE_TIMEOUT);\nassertEqual('status code', responseCode.code, 200);\n\nlet json;\ntry {\n  json = JSON.parse(responseBody);\n} catch (err) {\n  assertFail('Expect response body to be valid JSON');\n  printInfo('Response body', responseBody);\n  console.error(err);\n}\n\n// 项目通用的断言\nif (json) {\n  const { resultCode, resultMsg, detailMsg } = json;\n  assertEqual('resultCode', resultCode, 1);\n\n  if (resultMsg) printInfo('msg', resultMsg);\n  if (detailMsg) printInfo('msg', detailMsg);\n}\n\n// 具体接口相关的断言\nif (json && (json.data !== undefined)) {\n  assertEqual('data', json.data, true);\n} else {\n  assertFail('Expect response body to have data');\n}\n"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": "const sleep = (milliseconds) => {\n const start = new Date().getTime();\n while (new Date().getTime() <= start + milliseconds) {}\n};\n\nsleep(2000);\n"
+							}
+						}
+					],
+					"request": {
+						"url": "{{APP_SERVER}}/auth/updatePwd",
+						"method": "POST",
+						"header": [
+							{
+								"key": "User-Agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "userId",
+									"value": "{{PATIENT2_USERID}}",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "oldPwd",
+									"value": "J1@g0ngz1",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "newPwd",
+									"value": "{{PWD_LOGIN}}",
+									"type": "text",
+									"enabled": true
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

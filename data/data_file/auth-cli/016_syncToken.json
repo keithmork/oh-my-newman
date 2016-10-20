@@ -1,0 +1,16 @@
+[
+  {
+    "_title": "患者",
+    "_description": "",
+    "_statusCode": 200,
+    "_timeout": 2000,
+    "_mustHave": [
+      { "elementPath": "json.data", "type": "boolean", "value": true },
+      { "elementPath": "json.resultCode", "type": "number", "value": 1 }
+    ],
+    "_mustNotHave": [
+      { "elementPath": "", "type": "", "value": "" }
+    ],
+    "param": "{\"allToken\": []}"
+  }
+]

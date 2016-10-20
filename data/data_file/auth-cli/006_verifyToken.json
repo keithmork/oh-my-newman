@@ -1,0 +1,30 @@
+[
+  {
+    "_title": "【非法】access_token为空",
+    "_description": "合法输入是动态生成的没法写死，在Postman另外搞用例校验",
+    "_statusCode": 200,
+    "_timeout": 5000,
+    "_mustHave": [
+      { "elementPath": "json.data", "type": "boolean", "value": false },
+      { "elementPath": "json.resultCode", "type": "number", "value": 1 }
+    ],
+    "_mustNotHave": [
+      { "elementPath": "", "type": "", "value": "" }
+    ],
+    "accessToken": ""
+  },
+  {
+    "_title": "【非法】access_token为数字",
+    "_description": "",
+    "_statusCode": 200,
+    "_timeout": 5000,
+    "_mustHave": [
+      { "elementPath": "json.data", "type": "boolean", "value": false },
+      { "elementPath": "json.resultCode", "type": "number", "value": 1 }
+    ],
+    "_mustNotHave": [
+      { "elementPath": "", "type": "", "value": "" }
+    ],
+    "accessToken": 1
+  }
+]

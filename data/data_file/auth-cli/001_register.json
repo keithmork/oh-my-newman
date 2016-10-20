@@ -1,0 +1,248 @@
+[
+  {
+    "_title": "【不明确】用户类型为负数",
+    "_description": "",
+    "_statusCode": 200,
+    "_timeout": 5000,
+    "_mustHave": [
+      { "elementPath": "json.data", "type": "object", "value": "" },
+      { "elementPath": "json.data.access_token", "type": "string", "value": "" },
+      { "elementPath": "json.data.userId", "type": "number", "value": "" },
+      { "elementPath": "json.resultCode", "type": "number", "value": 1 }
+    ],
+    "_mustNotHave": [
+      { "elementPath": "", "type": "", "value": "" }
+    ],
+    "accountNum": "{{randomMobile}}",
+    "password": "{{PWD_LOGIN}}",
+    "userType": -1
+  },
+  {
+    "_title": "手机注册-患者",
+    "_description": "",
+    "_statusCode": 200,
+    "_timeout": 5000,
+    "_mustHave": [
+      { "elementPath": "json.data", "type": "object", "value": "" },
+      { "elementPath": "json.data.access_token", "type": "string", "value": "" },
+      { "elementPath": "json.data.userId", "type": "number", "value": "" },
+      { "elementPath": "json.resultCode", "type": "number", "value": 1 }
+    ],
+    "_mustNotHave": [
+      { "elementPath": "", "type": "", "value": "" }
+    ],
+    "accountNum": "{{randomMobile}}",
+    "password": "{{PWD_LOGIN}}",
+    "userType": 1
+  },
+  {
+    "_title": "手机注册-医生",
+    "_description": "",
+    "_statusCode": 200,
+    "_timeout": 5000,
+    "_mustHave": [
+      { "elementPath": "json.data", "type": "object", "value": "" },
+      { "elementPath": "json.data.access_token", "type": "string", "value": "" },
+      { "elementPath": "json.data.userId", "type": "number", "value": "" },
+      { "elementPath": "json.resultCode", "type": "number", "value": 1 }
+    ],
+    "_mustNotHave": [
+      { "elementPath": "", "type": "", "value": "" }
+    ],
+    "accountNum": "{{randomMobile}}",
+    "password": "{{PWD_LOGIN}}",
+    "userType": 3
+  },
+  {
+    "_title": "手机注册-运营",
+    "_description": "",
+    "_statusCode": 200,
+    "_timeout": 5000,
+    "_mustHave": [
+      { "elementPath": "json.data", "type": "object", "value": "" },
+      { "elementPath": "json.data.access_token", "type": "string", "value": "" },
+      { "elementPath": "json.data.userId", "type": "number", "value": "" },
+      { "elementPath": "json.resultCode", "type": "number", "value": 1 }
+    ],
+    "_mustNotHave": [
+      { "elementPath": "", "type": "", "value": "" }
+    ],
+    "accountNum": "{{randomMobile}}",
+    "password": "{{PWD_LOGIN}}",
+    "userType": 4
+  },
+  {
+    "_title": "手机注册-药企人员",
+    "_description": "",
+    "_statusCode": 200,
+    "_timeout": 5000,
+    "_mustHave": [
+      { "elementPath": "json.data", "type": "object", "value": "" },
+      { "elementPath": "json.data.access_token", "type": "string", "value": "" },
+      { "elementPath": "json.data.userId", "type": "number", "value": "" },
+      { "elementPath": "json.resultCode", "type": "number", "value": 1 }
+    ],
+    "_mustNotHave": [
+      { "elementPath": "", "type": "", "value": "" }
+    ],
+    "accountNum": "{{randomMobile}}",
+    "password": "{{PWD_LOGIN}}",
+    "userType": 10
+  },
+  {
+    "_title": "账号为任意字符串",
+    "_description": "",
+    "_statusCode": 200,
+    "_timeout": 5000,
+    "_mustHave": [
+      { "elementPath": "json.data", "type": "object", "value": "" },
+      { "elementPath": "json.data.access_token", "type": "string", "value": "" },
+      { "elementPath": "json.data.userId", "type": "number", "value": "" },
+      { "elementPath": "json.resultCode", "type": "number", "value": 1 }
+    ],
+    "_mustNotHave": [
+      { "elementPath": "", "type": "", "value": "" }
+    ],
+    "accountNum": "{{$guid}}",
+    "password": "{{PWD_LOGIN}}",
+    "userType": 1
+  },
+  {
+    "_title": "密码为空",
+    "_description": "",
+    "_statusCode": 200,
+    "_timeout": 5000,
+    "_mustHave": [
+      { "elementPath": "json.data", "type": "object", "value": "" },
+      { "elementPath": "json.data.access_token", "type": "string", "value": "" },
+      { "elementPath": "json.data.userId", "type": "number", "value": "" },
+      { "elementPath": "json.resultCode", "type": "number", "value": 1 }
+    ],
+    "_mustNotHave": [
+      { "elementPath": "", "type": "", "value": "" }
+    ],
+    "accountNum": "{{randomMobile}}",
+    "password": "",
+    "userType": 1
+  },
+  {
+    "_title": "密码注入删库",
+    "_description": "",
+    "_statusCode": 200,
+    "_timeout": 5000,
+    "_mustHave": [
+      { "elementPath": "json.data", "type": "object", "value": "" },
+      { "elementPath": "json.data.access_token", "type": "string", "value": "" },
+      { "elementPath": "json.data.userId", "type": "number", "value": "" },
+      { "elementPath": "json.resultCode", "type": "number", "value": 1 }
+    ],
+    "_mustNotHave": [
+      { "elementPath": "", "type": "", "value": "" }
+    ],
+    "accountNum": "{{randomMobile}}",
+    "password": "db.Auth.drop()",
+    "userType": 1
+  },
+  {
+    "_title": "【非法】手机号已注册",
+    "_description": "",
+    "_statusCode": 200,
+    "_timeout": 5000,
+    "_mustHave": [
+      { "elementPath": "json.detailMsg", "type": "string", "value": "" },
+      { "elementPath": "json.resultCode", "type": "number", "value": "" }
+    ],
+    "_mustNotHave": [
+      { "elementPath": "json.data", "type": "", "value": "" },
+      { "elementPath": "json.resultCode", "type": "", "value": 1 }
+    ],
+    "accountNum": "{{PATIENT_MOBILE}}",
+    "password": "{{PWD_LOGIN}}",
+    "userType": 1
+  },
+  {
+    "_title": "【非法】账号为空",
+    "_description": "",
+    "_statusCode": 200,
+    "_timeout": 5000,
+    "_mustHave": [
+      { "elementPath": "json.detailMsg", "type": "string", "value": "" },
+      { "elementPath": "json.resultCode", "type": "number", "value": "" }
+    ],
+    "_mustNotHave": [
+      { "elementPath": "json.data", "type": "", "value": "" },
+      { "elementPath": "json.resultCode", "type": "", "value": 1 }
+    ],
+    "accountNum": "",
+    "password": "{{PWD_LOGIN}}",
+    "userType": 1
+  },
+  {
+    "_title": "【非法】用户类型为空",
+    "_description": "",
+    "_statusCode": 200,
+    "_timeout": 5000,
+    "_mustHave": [
+      { "elementPath": "json.detailMsg", "type": "string", "value": "" },
+      { "elementPath": "json.resultCode", "type": "number", "value": "" }
+    ],
+    "_mustNotHave": [
+      { "elementPath": "json.data", "type": "", "value": "" },
+      { "elementPath": "json.resultCode", "type": "", "value": 1 }
+    ],
+    "accountNum": "{{randomMobile}}",
+    "password": "{{PWD_LOGIN}}",
+    "userType": ""
+  },
+  {
+    "_title": "【非法】用户类型为字符串",
+    "_description": "注入",
+    "_statusCode": 200,
+    "_timeout": 5000,
+    "_mustHave": [
+      { "elementPath": "json.detailMsg", "type": "string", "value": "" },
+      { "elementPath": "json.resultCode", "type": "number", "value": "" }
+    ],
+    "_mustNotHave": [
+      { "elementPath": "json.data", "type": "", "value": "" },
+      { "elementPath": "json.resultCode", "type": "", "value": 1 }
+    ],
+    "accountNum": "{{randomMobile}}",
+    "password": "{{PWD_LOGIN}}",
+    "userType": "db.Auth.drop()"
+  },
+  {
+    "_title": "【非法】用户类型为小数",
+    "_description": "",
+    "_statusCode": 200,
+    "_timeout": 5000,
+    "_mustHave": [
+      { "elementPath": "json.detailMsg", "type": "string", "value": "" },
+      { "elementPath": "json.resultCode", "type": "number", "value": "" }
+    ],
+    "_mustNotHave": [
+      { "elementPath": "json.data", "type": "", "value": "" },
+      { "elementPath": "json.resultCode", "type": "", "value": 1 }
+    ],
+    "accountNum": "{{randomMobile}}",
+    "password": "{{PWD_LOGIN}}",
+    "userType": 3.14
+  },
+  {
+    "_title": "【非法】用户类型为0",
+    "_description": "",
+    "_statusCode": 200,
+    "_timeout": 5000,
+    "_mustHave": [
+      { "elementPath": "json.detailMsg", "type": "string", "value": "" },
+      { "elementPath": "json.resultCode", "type": "number", "value": "" }
+    ],
+    "_mustNotHave": [
+      { "elementPath": "json.data", "type": "", "value": "" },
+      { "elementPath": "json.resultCode", "type": "", "value": 1 }
+    ],
+    "accountNum": "{{randomMobile}}",
+    "password": "{{PWD_LOGIN}}",
+    "userType": 0
+  }
+]

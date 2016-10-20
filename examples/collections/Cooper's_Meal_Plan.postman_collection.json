@@ -1,0 +1,161 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Cooper's Meal Plan",
+		"_postman_id": "9eec9708-ebc2-6c8f-c15b-bda8dd648da7",
+		"description": "<a href=\"http://blog.getpostman.com/wp-content/uploads/2016/03/Slack-for-iOS-Upload-1-1-1200x937.jpg\" target=\"_blank\">\n<img src=\"http://blog.getpostman.com/wp-content/uploads/2016/03/Slack-for-iOS-Upload-1-1-300x234.jpg\"/ alt=\"Cooper Workflow\"/></a>\n<a href=\"http://blog.getpostman.com/wp-content/uploads/2016/03/CoopFlow-1200x847.png\" target=\"_blank\">\n<img src=\"http://blog.getpostman.com/wp-content/uploads/2016/03/CoopFlow-300x212.png\"/ alt=\"Cooper Workflow\"/></a>",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Generate Meal Plan",
+			"description": " ",
+			"item": [
+				{
+					"name": "Get Food",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": "tests[\"Status code is 200\"] = (responseCode.code === 200);\n\nif (responseCode.code === 200) {\n    // Store the array of available food items for the dog in the environment\n    postman.setEnvironmentVariable(\"items\", responseBody);\n    // Set an ID for this execution\n    postman.setEnvironmentVariable(\"run_id\", _.random(0,100000));\n    // As defined in the workflow, set the next request to be executed to Create Day Log\n    postman.setNextRequest(\"Create Day Log\");\n}\nelse {\n    // Stop execution\n    postman.setNextRequest(null);\n}"
+							}
+						}
+					],
+					"request": {
+						"url": "{{url}}/allowed_food",
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"description": "Get a list of approved food items for Cooper\n\n*Test Script:*\n\n```\ntests[\"Status code is 200\"] = (responseCode.code === 200);\n\nif (responseCode.code === 200) {\n    // Store the array of available food items for the dog in the environment\n    postman.setEnvironmentVariable(\"items\", responseBody);\n    // Set an ID for this execution\n    postman.setEnvironmentVariable(\"run_id\", _.random(0,100000));\n    // As defined in the workflow, set the next request to be executed to Create Day Log\n    postman.setNextRequest(\"Create Day Log\");\n}\nelse {\n    // Stop execution\n    postman.setNextRequest(null);\n}\n```"
+					},
+					"response": []
+				},
+				{
+					"name": "Create Day Log",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": "tests[\"Status code is 200\"] = (responseCode.code === 200);\n\nif (responseCode.code === 200) {\n    // Now that we've created the Day log, move to Add Meal to Day\n    postman.setNextRequest(\"Add Meal to Day\");\n}\nelse {\n    // Stop execution\n    postman.setNextRequest(null);\n}"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": "// Counter for the day loop\nvar d = environment.d ? _.parseInt(environment.d) + 1 : 1;\n\n// This value will be use in the URL\npostman.setEnvironmentVariable(\"d\", d);"
+							}
+						}
+					],
+					"request": {
+						"url": "{{url}}/day",
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"enabled": true,
+									"key": "day",
+									"type": "text",
+									"value": "{{d}}"
+								},
+								{
+									"key": "run_id",
+									"value": "{{run_id}}",
+									"type": "text",
+									"enabled": true
+								}
+							]
+						},
+						"description": "Entry for Day d in the Food Log\n\n*Pre-request Script:*\n```\n// Counter for the day loop\nvar d = environment.d ? _.parseInt(environment.d) + 1 : 1;\n\n// This value will be use in the URL\npostman.setEnvironmentVariable(\"d\", d);\n```\n\n*Test Script:*\n```\ntests[\"Status code is 200\"] = (responseCode.code === 200);\n\nif (responseCode.code === 200) {\n    // Now that we've created the Day log, move to Add Meal to Day\n    postman.setNextRequest(\"Add Meal to Day\");\n}\nelse {\n    // Stop execution\n    postman.setNextRequest(null);\n}\n```\n"
+					},
+					"response": []
+				},
+				{
+					"name": "Add Meal to Day",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": "tests[\"Status code is 200\"] = (responseCode.code === 200);\n\nif (responseCode.code === 200) {\n    // Increment meal counter by 1\n    var m = _.parseInt(environment.m) + 1,\n        d = _.parseInt(environment.d);\n    \n    // If last meal of the day\n    if (m === 4) {\n        postman.setEnvironmentVariable(\"m\", 1);\n        postman.setEnvironmentVariable(\"todayItems\", \"\");\n        // If not last day of the week, return to Create Day Log to set meals for the next day\n        // otherwise end the workflow, by not setting the Next Request\n        if (d < 7) {\n            postman.setNextRequest(\"Create Day Log\");\n        }\n        else {\n            postman.setEnvironmentVariable(\"d\", 0);\n            // Terminate execution\n            postman.setNextRequest(null);\n        }\n    }\n    // otherwise loop for the subsequent meal\n    else {\n        postman.setEnvironmentVariable(\"m\", m);\n        postman.setNextRequest(\"Add Meal to Day\");\n    }\n}\nelse {\n    // Stop execution\n    postman.setNextRequest(null);\n}"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": "var m = environment.m ? _.parseInt(environment.m) : 1, // which meal of the day, defaulting to 1\n    // Remaining food items, which haven't already been fed to the dog today\n    todayItems = environment.todayItems ? JSON.parse(environment.todayItems) : JSON.parse(environment.items),\n    // Randomly choose one of the remaining food items\n    foodItem = _.sample(todayItems);\n\n// Remove the selected foodItem from contention for the rest of the day\n_.pull(todayItems, foodItem);\npostman.setEnvironmentVariable(\"m\", m);\npostman.setEnvironmentVariable(\"foodItem\", foodItem);\npostman.setEnvironmentVariable(\"todayItems\", JSON.stringify(todayItems));"
+							}
+						}
+					],
+					"request": {
+						"url": "{{url}}/meal",
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"enabled": true,
+									"key": "meal_item",
+									"type": "text",
+									"value": "{{foodItem}}"
+								},
+								{
+									"enabled": true,
+									"key": "day",
+									"type": "text",
+									"value": "{{d}}"
+								},
+								{
+									"enabled": true,
+									"key": "meal",
+									"type": "text",
+									"value": "{{m}}"
+								},
+								{
+									"key": "run_id",
+									"value": "{{run_id}}",
+									"type": "text",
+									"enabled": true
+								}
+							]
+						},
+						"description": "Pick one of the food items and assign to Meal m without repetition\n\n*Pre-request Script:*\n```\nvar m = environment.m ? _.parseInt(environment.m) : 1, // which meal of the day, defaulting to 1\n    // Remaining food items, which haven't already been fed to the dog today\n    todayItems = environment.todayItems ? JSON.parse(environment.todayItems) : JSON.parse(environment.items),\n    // Randomly choose one of the remaining food items\n    foodItem = _.sample(todayItems);\n\n// Remove the selected foodItem from contention for the rest of the day\n_.pull(todayItems, foodItem);\npostman.setEnvironmentVariable(\"m\", m);\npostman.setEnvironmentVariable(\"foodItem\", foodItem);\npostman.setEnvironmentVariable(\"todayItems\", JSON.stringify(todayItems));\n```\n\n*Test Script:*\n```\ntests[\"Status code is 200\"] = (responseCode.code === 200);\n\nif (responseCode.code === 200) {\n    // Increment meal counter by 1\n    var m = _.parseInt(environment.m) + 1,\n        d = _.parseInt(environment.d);\n    \n    // If last meal of the day\n    if (m === 4) {\n        postman.setEnvironmentVariable(\"m\", 1);\n        postman.setEnvironmentVariable(\"todayItems\", \"\");\n        // If not last day of the week, return to Create Day Log to set meals for the next day\n        // otherwise end the workflow, by not setting the Next Request\n        if (d < 7) {\n            postman.setNextRequest(\"Create Day Log\");\n        }\n        else {\n            postman.setEnvironmentVariable(\"d\", 0);\n            // Terminate execution\n            postman.setNextRequest(null);\n        }\n    }\n    // otherwise loop for the subsequent meal\n    else {\n        postman.setEnvironmentVariable(\"m\", m);\n        postman.setNextRequest(\"Add Meal to Day\");\n    }\n}\nelse {\n    // Stop execution\n    postman.setNextRequest(null);\n}\n```"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Get Weekly Plan",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": "tests[\"Status code is 200\"] = (responseCode.code === 200);\n\npostman.setNextRequest(null);"
+					}
+				}
+			],
+			"request": {
+				"url": "{{url}}/plan?run_id={{run_id}}",
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}

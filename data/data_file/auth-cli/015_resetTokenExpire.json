@@ -1,0 +1,77 @@
+[
+  {
+    "_title": "【不明确】access token为空",
+    "_description": "目前这接口传什么都返回一样的内容……",
+    "_statusCode": 200,
+    "_timeout": 5000,
+    "_mustHave": [
+      { "elementPath": "json.data", "type": "boolean", "value": true },
+      { "elementPath": "json.resultCode", "type": "number", "value": 1 }
+    ],
+    "_mustNotHave": [
+      { "elementPath": "", "type": "", "value": "" }
+    ],
+    "accessToken": "",
+    "userId": "{{PATIENT_USERID}}"
+  },
+  {
+    "_title": "【不明确】userId为空",
+    "_description": "",
+    "_statusCode": 200,
+    "_timeout": 5000,
+    "_mustHave": [
+      { "elementPath": "json.data", "type": "boolean", "value": true },
+      { "elementPath": "json.resultCode", "type": "number", "value": 1 }
+    ],
+    "_mustNotHave": [
+      { "elementPath": "", "type": "", "value": "" }
+    ],
+    "accessToken": "db.Auth.drop()",
+    "userId": ""
+  },
+  {
+    "_title": "【不明确】所有参数为空",
+    "_description": "",
+    "_statusCode": 200,
+    "_timeout": 5000,
+    "_mustHave": [
+      { "elementPath": "json.data", "type": "boolean", "value": true },
+      { "elementPath": "json.resultCode", "type": "number", "value": 1 }
+    ],
+    "_mustNotHave": [
+      { "elementPath": "", "type": "", "value": "" }
+    ],
+    "accessToken": "",
+    "userId": ""
+  },
+  {
+    "_title": "患者的token",
+    "_description": "这token其他测试要用到，不能让它失效",
+    "_statusCode": 200,
+    "_timeout": 5000,
+    "_mustHave": [
+      { "elementPath": "json.data", "type": "boolean", "value": true },
+      { "elementPath": "json.resultCode", "type": "number", "value": 1 }
+    ],
+    "_mustNotHave": [
+      { "elementPath": "", "type": "", "value": "" }
+    ],
+    "accessToken": "{{PATIENT_ACCESS_TOKEN}}",
+    "userId": "{{PATIENT_USERID}}"
+  },
+  {
+    "_title": "drug用户的token",
+    "_description": "这token其他测试要用到，不能让它失效",
+    "_statusCode": 200,
+    "_timeout": 5000,
+    "_mustHave": [
+      { "elementPath": "json.data", "type": "boolean", "value": true },
+      { "elementPath": "json.resultCode", "type": "number", "value": 1 }
+    ],
+    "_mustNotHave": [
+      { "elementPath": "", "type": "", "value": "" }
+    ],
+    "accessToken": "DRUG_ACCESS_TOKEN",
+    "userId": "{{DRUG_USERID}}"
+  }
+]

@@ -1,0 +1,63 @@
+{
+	"variables": [],
+	"info": {
+		"name": "TEMPLATE-cli",
+		"_postman_id": "4e4c02cc-1900-943c-b8ab-928bd922bd78",
+		"description": "Write your description here.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "001_folderName1",
+			"description": "Write your description here.",
+			"item": [
+				{
+					"name": "/your/API/address [description]",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": "//use:tests_json"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": "//use:pre_register"
+							}
+						}
+					],
+					"request": {
+						"url": "{{HOST}}/your/api",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "User-Agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"xx\":\"{{env_variable}}\",\n    \"yy\":\"zz\"\n}"
+						},
+						"description": "Write your description here."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "002_folderName2",
+			"description": "Write your description here.",
+			"item": []
+		}
+	]
+}

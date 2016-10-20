@@ -1,0 +1,72 @@
+[
+  {
+    "_title": "【不明确】userId格式不合法",
+    "_description": "注入删库",
+    "_statusCode": 200,
+    "_timeout": 5000,
+    "_mustHave": [
+      { "elementPath": "json.data", "type": "string", "value": "" },
+      { "elementPath": "json.resultCode", "type": "number", "value": 1 }
+    ],
+    "_mustNotHave": [
+      { "elementPath": "", "type": "", "value": "" }
+    ],
+    "userId": "db.Auth.drop()"
+  },
+  {
+    "_title": "【不明确】userId为空",
+    "_description": "相当于传 0，虽然没有userId为0的用户",
+    "_statusCode": 200,
+    "_timeout": 5000,
+    "_mustHave": [
+      { "elementPath": "json.data", "type": "string", "value": "" },
+      { "elementPath": "json.resultCode", "type": "number", "value": 1 }
+    ],
+    "_mustNotHave": [
+      { "elementPath": "", "type": "", "value": "" }
+    ],
+    "userId": ""
+  },
+  {
+    "_title": "【不明确】userId为负数",
+    "_description": "反正这接口不管业务逻辑，都交给调用方做限制",
+    "_statusCode": 200,
+    "_timeout": 5000,
+    "_mustHave": [
+      { "elementPath": "json.data", "type": "string", "value": "" },
+      { "elementPath": "json.resultCode", "type": "number", "value": 1 }
+    ],
+    "_mustNotHave": [
+      { "elementPath": "", "type": "", "value": "" }
+    ],
+    "userId": -1
+  },
+  {
+    "_title": "【不明确】userId为小数",
+    "_description": "",
+    "_statusCode": 200,
+    "_timeout": 5000,
+    "_mustHave": [
+      { "elementPath": "json.data", "type": "string", "value": "" },
+      { "elementPath": "json.resultCode", "type": "number", "value": 1 }
+    ],
+    "_mustNotHave": [
+      { "elementPath": "", "type": "", "value": "" }
+    ],
+    "userId": 3.14
+  },
+  {
+    "_title": "生成access_token-患者",
+    "_description": "",
+    "_statusCode": 200,
+    "_timeout": 5000,
+    "_mustHave": [
+      { "elementPath": "json.data", "type": "string", "value": "" },
+      { "elementPath": "json.resultCode", "type": "number", "value": 1 }
+    ],
+    "_mustNotHave": [
+      { "elementPath": "", "type": "", "value": "" }
+    ],
+    "userId": "{{PATIENT_USERID}}"
+  }
+]

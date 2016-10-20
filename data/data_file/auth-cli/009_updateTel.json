@@ -1,0 +1,95 @@
+[
+  {
+    "_title": "【不明确】账号不存在",
+    "_description": "注入删库",
+    "_statusCode": 200,
+    "_timeout": 5000,
+    "_mustHave": [
+      { "elementPath": "json.data", "type": "boolean", "value": true },
+      { "elementPath": "json.resultCode", "type": "number", "value": 1 }
+    ],
+    "_mustNotHave": [
+      { "elementPath": "", "type": "", "value": "" }
+    ],
+    "accountNum": "db.Auth.drop()",
+    "userId": "{{PATIENT4_USERID}}"
+  },
+  {
+    "_title": "【不明确】手机号为空",
+    "_description": "",
+    "_statusCode": 200,
+    "_timeout": 5000,
+    "_mustHave": [
+      { "elementPath": "json.data", "type": "boolean", "value": true },
+      { "elementPath": "json.resultCode", "type": "number", "value": 1 }
+    ],
+    "_mustNotHave": [
+      { "elementPath": "", "type": "", "value": "" }
+    ],
+    "accountNum": "",
+    "userId": "{{PATIENT4_USERID}}"
+  },
+  {
+    "_title": "更新手机-新手机和原来相同",
+    "_description": "",
+    "_statusCode": 200,
+    "_timeout": 5000,
+    "_mustHave": [
+      { "elementPath": "json.data", "type": "boolean", "value": true },
+      { "elementPath": "json.resultCode", "type": "number", "value": 1 }
+    ],
+    "_mustNotHave": [
+      { "elementPath": "", "type": "", "value": "" }
+    ],
+    "accountNum": "{{PATIENT2_MOBILE}}",
+    "userId": "{{PATIENT4_USERID}}"
+  },
+  {
+    "_title": "【非法】userId为空",
+    "_description": "",
+    "_statusCode": 200,
+    "_timeout": 5000,
+    "_mustHave": [
+      { "elementPath": "json.detailMsg", "type": "string", "value": "" },
+      { "elementPath": "json.resultCode", "type": "number", "value": "" }
+    ],
+    "_mustNotHave": [
+      { "elementPath": "json.data", "type": "", "value": "" },
+      { "elementPath": "json.resultCode", "type": "", "value": 1 }
+    ],
+    "accountNum": "{{PATIENT4_MOBILE}}",
+    "userId": ""
+  },
+  {
+    "_title": "【非法】所有参数为空",
+    "_description": "",
+    "_statusCode": 200,
+    "_timeout": 5000,
+    "_mustHave": [
+      { "elementPath": "json.detailMsg", "type": "string", "value": "" },
+      { "elementPath": "json.resultCode", "type": "number", "value": "" }
+    ],
+    "_mustNotHave": [
+      { "elementPath": "json.data", "type": "", "value": "" },
+      { "elementPath": "json.resultCode", "type": "", "value": 1 }
+    ],
+    "accountNum": "",
+    "userId": ""
+  },
+  {
+    "_title": "【非法】userId不存在",
+    "_description": "注入删库",
+    "_statusCode": 200,
+    "_timeout": 5000,
+    "_mustHave": [
+      { "elementPath": "json.detailMsg", "type": "string", "value": "" },
+      { "elementPath": "json.resultCode", "type": "number", "value": "" }
+    ],
+    "_mustNotHave": [
+      { "elementPath": "json.data", "type": "", "value": "" },
+      { "elementPath": "json.resultCode", "type": "", "value": 1 }
+    ],
+    "accountNum": "{{PATIENT4_MOBILE}}",
+    "userType": "db.Auth.drop()"
+  }
+]

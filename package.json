@@ -1,0 +1,45 @@
+{
+  "name": "MyNewman",
+  "version": "0.0.1",
+  "description": "Batch execution tool for Newman",
+  "homepage": "https://github.com/keithmork/MyNewman",
+  "bugs": "https://github.com/keithmork/MyNewman/issues",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/keithmork/MyNewman.git"
+  },
+  "keywords": [
+    "newman",
+    "postman",
+    "api",
+    "testing",
+    "rest"
+  ],
+  "main": "index.js",
+  "bin": {
+    "mynewman": "./bin/mynewman.js"
+  },
+  "scripts": {
+    "test": "istanbul cover node_modules/jasmine/bin/jasmine.js"
+  },
+  "author": "Keith Mo <keith.mork@gmail.com> (https://keithmo.me)",
+  "license": "ISC",
+  "dependencies": {
+    "newman": "^3.1.2",
+    "command-line-args": "^3.0.1",
+    "command-line-usage": "^3.0.4"
+  },
+  "devDependencies": {
+    "chai": "*",
+    "eslint": "^3.7.1",
+    "eslint-config-airbnb": "^12.0.0",
+    "eslint-plugin-import": "^2.0.1",
+    "eslint-plugin-jsx-a11y": "^2.2.3",
+    "eslint-plugin-react": "^6.4.1",
+    "istanbul": "^0.4.5",
+    "mocha": "^3.1.2"
+  },
+  "engines": {
+    "node": ">=6"
+  }
+}

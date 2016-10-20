@@ -1,0 +1,178 @@
+[
+  {
+    "_title": "【不明确】新密码为空",
+    "_description": "目前能修改成功",
+    "_statusCode": 200,
+    "_timeout": 5000,
+    "_mustHave": [
+      { "elementPath": "json.data", "type": "boolean", "value": true },
+      { "elementPath": "json.resultCode", "type": "number", "value": 1 }
+    ],
+    "_mustNotHave": [
+      { "elementPath": "", "type": "", "value": "" }
+    ],
+    "accountNum": "{{PATIENT3_MOBILE}}",
+    "userType": "1",
+    "newPwd": ""
+  },
+  {
+    "_title": "【不明确】新密码为空格",
+    "_description": "目前能修改成功",
+    "_statusCode": 200,
+    "_timeout": 5000,
+    "_mustHave": [
+      { "elementPath": "json.data", "type": "boolean", "value": true },
+      { "elementPath": "json.resultCode", "type": "number", "value": 1 }
+    ],
+    "_mustNotHave": [
+      { "elementPath": "", "type": "", "value": "" }
+    ],
+    "accountNum": "{{PATIENT3_MOBILE}}",
+    "userType": "1",
+    "newPwd": " "
+  },
+  {
+    "_title": "重置密码-患者",
+    "_description": "默认测试账号",
+    "_statusCode": 200,
+    "_timeout": 5000,
+    "_mustHave": [
+      { "elementPath": "json.data", "type": "boolean", "value": true },
+      { "elementPath": "json.resultCode", "type": "number", "value": 1 }
+    ],
+    "_mustNotHave": [
+      { "elementPath": "", "type": "", "value": "" }
+    ],
+    "accountNum": "{{PATIENT_MOBILE}}",
+    "userType": "1",
+    "newPwd": "{{PWD_LOGIN}}"
+  },
+  {
+    "_title": "重置密码-医生",
+    "_description": "默认测试账号",
+    "_statusCode": 200,
+    "_timeout": 5000,
+    "_mustHave": [
+      { "elementPath": "json.data", "type": "boolean", "value": true },
+      { "elementPath": "json.resultCode", "type": "number", "value": 1 }
+    ],
+    "_mustNotHave": [
+      { "elementPath": "", "type": "", "value": "" }
+    ],
+    "accountNum": "{{DOCTOR_MOBILE}}",
+    "userType": "3",
+    "newPwd": "{{PWD_LOGIN}}"
+  },
+  {
+    "_title": "重置密码-药企人员",
+    "_description": "默认测试账号",
+    "_statusCode": 200,
+    "_timeout": 5000,
+    "_mustHave": [
+      { "elementPath": "json.data", "type": "boolean", "value": true },
+      { "elementPath": "json.resultCode", "type": "number", "value": 1 }
+    ],
+    "_mustNotHave": [
+      { "elementPath": "", "type": "", "value": "" }
+    ],
+    "accountNum": "{{DRUGORG_MOBILE}}",
+    "userType": "10",
+    "newPwd": "{{PWD_LOGIN}}"
+  },
+  {
+    "_title": "重置密码-药店人员",
+    "_description": "默认测试账号",
+    "_statusCode": 200,
+    "_timeout": 5000,
+    "_mustHave": [
+      { "elementPath": "json.data", "type": "boolean", "value": true },
+      { "elementPath": "json.resultCode", "type": "number", "value": 1 }
+    ],
+    "_mustNotHave": [
+      { "elementPath": "", "type": "", "value": "" }
+    ],
+    "accountNum": "{{DRUG_MOBILE}}",
+    "userType": "11",
+    "newPwd": "{{PWD_LOGIN}}"
+  },
+  {
+    "_title": "【非法】账号为空",
+    "_description": "",
+    "_statusCode": 200,
+    "_timeout": 5000,
+    "_mustHave": [
+      { "elementPath": "json.detailMsg", "type": "string", "value": "" },
+      { "elementPath": "json.resultCode", "type": "number", "value": "" }
+    ],
+    "_mustNotHave": [
+      { "elementPath": "json.data", "type": "", "value": 1 }
+    ],
+    "accountNum": "",
+    "userType": "1",
+    "newPwd": "{{PWD_LOGIN}}"
+  },
+  {
+    "_title": "【非法】账号不存在",
+    "_description": "注入删库",
+    "_statusCode": 200,
+    "_timeout": 5000,
+    "_mustHave": [
+      { "elementPath": "json.detailMsg", "type": "string", "value": "" },
+      { "elementPath": "json.resultCode", "type": "number", "value": "" }
+    ],
+    "_mustNotHave": [
+      { "elementPath": "json.data", "type": "", "value": 1 }
+    ],
+    "accountNum": "db.health.drop()",
+    "userType": "1",
+    "newPwd": "{{PWD_LOGIN}}"
+  },
+  {
+    "_title": "【非法】账号和用户类型不匹配",
+    "_description": "",
+    "_statusCode": 200,
+    "_timeout": 5000,
+    "_mustHave": [
+      { "elementPath": "json.detailMsg", "type": "string", "value": "" },
+      { "elementPath": "json.resultCode", "type": "number", "value": "" }
+    ],
+    "_mustNotHave": [
+      { "elementPath": "json.data", "type": "", "value": 1 }
+    ],
+    "accountNum": "{{DRUG_MOBILE}}",
+    "userType": "3",
+    "newPwd": "{{PWD_LOGIN}}"
+  },
+  {
+    "_title": "【非法】用户类型为空",
+    "_description": "",
+    "_statusCode": 200,
+    "_timeout": 5000,
+    "_mustHave": [
+      { "elementPath": "json.detailMsg", "type": "string", "value": "" },
+      { "elementPath": "json.resultCode", "type": "number", "value": "" }
+    ],
+    "_mustNotHave": [
+      { "elementPath": "json.data", "type": "", "value": 1 }
+    ],
+    "accountNum": "{{PATIENT3_MOBILE}}",
+    "userType": "",
+    "newPwd": "{{PWD_LOGIN}}"
+  },
+  {
+    "_title": "【非法】用户类型不存在",
+    "_description": "注入删库",
+    "_statusCode": 200,
+    "_timeout": 5000,
+    "_mustHave": [
+      { "elementPath": "json.detailMsg", "type": "string", "value": "" },
+      { "elementPath": "json.resultCode", "type": "number", "value": "" }
+    ],
+    "_mustNotHave": [
+      { "elementPath": "json.data", "type": "", "value": 1 }
+    ],
+    "accountNum": "{{PATIENT3_MOBILE}}",
+    "userType": "db.Auth.drop()",
+    "newPwd": "{{PWD_LOGIN}}"
+  }
+]

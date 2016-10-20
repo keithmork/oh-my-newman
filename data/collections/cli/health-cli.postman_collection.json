@@ -1,0 +1,78 @@
+{
+	"variables": [],
+	"info": {
+		"name": "health-cli",
+		"_postman_id": "0f6dcf67-ce36-5db5-8c03-202543171a1f",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "001_register",
+			"description": "",
+			"item": [
+				{
+					"name": "/health/user/register 注册",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": "//use:tests_json"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": "//use:pre_register"
+							}
+						}
+					],
+					"request": {
+						"url": "{{APP_SERVER}}/health/user/register",
+						"method": "POST",
+						"header": [
+							{
+								"key": "user-agent",
+								"value": "DGroupDoctor/1.5090202.320/Dalvik/1.6.0 (Linux; U; Android 4.4.2; H60-L03 Build/HDH60-L03)",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "telephone",
+									"value": "{{telephone}}",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "password",
+									"value": "{{password}}",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "userType",
+									"value": "{{userType}}",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "name",
+									"value": "{{name}}",
+									"type": "text",
+									"enabled": true
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

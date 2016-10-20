@@ -1,0 +1,48 @@
+[
+  {
+    "_title": "患者",
+    "_description": "",
+    "_statusCode": 200,
+    "_timeout": 15000,
+    "_mustHave": [
+      {"elementPath":"json.data", "type":"object", "value":""},
+      {"elementPath":"json.data.access_token", "type":"string", "value":""},
+      {"elementPath":"json.data.user", "type":"object", "value":""},
+      {"elementPath":"json.data.user.userId", "type":"number", "value":""},
+      {"elementPath":"json.data.user.userType", "type":"number", "value":1},
+      {"elementPath":"json.data.user.status", "type":"number", "value":1},
+      {"elementPath":"json.data.user.telephone", "type":"string", "value":""},
+      {"elementPath":"json.resultCode", "type":"number", "value":1}
+    ],
+    "_mustNotHave": [
+    ],
+    "telephone": "{{randomMobile}}",
+    "password": "{{PWD_LOGIN}}",
+    "userType": 1,
+    "name": "{{randomName}}"
+  },
+  {
+    "_title": "医生",
+    "_description": "",
+    "_statusCode": 200,
+    "_timeout": 15000,
+    "_mustHave": [
+      {"elementPath":"json.data", "type":"object", "value":""},
+      {"elementPath":"json.data.access_token", "type":"string", "value":""},
+      {"elementPath":"json.data.user", "type":"object", "value":""},
+      {"elementPath":"json.data.user.doctor", "type":"object", "value":""},
+      {"elementPath":"json.data.user.doctor.doctorNum", "type":"string", "value":""},
+      {"elementPath":"json.data.user.userId", "type":"number", "value":""},
+      {"elementPath":"json.data.user.userType", "type":"number", "value":3},
+      {"elementPath":"json.data.user.status", "type":"number", "value":7},
+      {"elementPath":"json.data.user.telephone", "type":"string", "value":""},
+      {"elementPath":"json.resultCode", "type":"number", "value":1}
+    ],
+    "_mustNotHave": [
+    ],
+    "telephone": "{{randomMobile}}",
+    "password": "{{PWD_LOGIN}}",
+    "userType": 3,
+    "name": ""
+  }
+]

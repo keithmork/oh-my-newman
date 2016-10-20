@@ -1,0 +1,21 @@
+{
+  "id": "4f9f061c-23db-075a-e674-657df44db8f7",
+  "name": "Postman Globals",
+  "values": [
+    {
+      "key": "echo_digest_realm",
+      "type": "text",
+      "value": "Users",
+      "enabled": true
+    },
+    {
+      "key": "echo_digest_nonce",
+      "type": "text",
+      "value": "Vf2ou6XeaBR1odAetfLsLKEsw0eLKChJ",
+      "enabled": true
+    }
+  ],
+  "_postman_variable_scope": "globals",
+  "_postman_exported_at": "2016-10-17T06:32:29.070Z",
+  "_postman_exported_using": "Postman/4.7.2"
+}

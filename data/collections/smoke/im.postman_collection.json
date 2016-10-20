@@ -1,0 +1,46 @@
+{
+	"variables": [],
+	"info": {
+		"name": "im",
+		"_postman_id": "09fbbca8-0464-da83-f991-e41c3d5f84fb",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "001_monitor",
+			"description": "",
+			"item": [
+				{
+					"name": "/im/monitor/getstatus - 服务健康检查",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": "const assertEqual = (name, actual, expected) => {\r\n  tests[`Expect ${name} to equal ${expected}, actual: ${actual}`] = actual === expected;\r\n};\r\nconst assertNotEqual = (name, actual, expected) => {\r\n  tests[`Expect ${name} not to equal ${expected}, actual: ${actual}`] = actual !== expected;\r\n};\r\nconst assertType = (name, value, type) => {\r\n  if (type === 'array') {\r\n    tests[`Expect ${name} to be ${type}: ${value}`] = Array.isArray(value);\r\n  } else {\r\n    tests[`Expect ${name} to be ${type}: ${value}`] = typeof value === type;\r\n  }\r\n};\r\nconst assertTimeout = (name, actual, time) => {\r\n  const timeout = time || 10000;\r\n  tests[`Expect ${name} to be no more than ${timeout} ms, actual: ${actual} ms`] = actual <= timeout;\r\n};\r\nconst assertFail = msg => tests[msg] = false;\r\nconst printInfo = (msg, value) => tests[`[INFO] ${msg}: ${value}`] = true;\r\nconst setEnvVar = (name, value) => postman.setEnvironmentVariable(name, value);\r\n\r\n// 通用部分\r\nprintInfo('Request params', JSON.stringify(request.data));\r\nassertTimeout('response time', responseTime, environment.RESPONSE_TIMEOUT);\r\nassertEqual('status code', responseCode.code, 200);\r\n\r\nlet json;\r\ntry {\r\n  json = JSON.parse(responseBody);\r\n} catch (err) {\r\n  assertFail('Expect response body to be valid JSON');\r\n  printInfo('Response body', responseBody);\r\n  console.error(err);\r\n}\r\n\r\n// 具体接口相关的断言\r\nconst expected = {\r\n};\r\n\r\nif (json) {\r\n  const { data, ok, desc } = json;\r\n  assertEqual('ok', ok, true);\r\n  assertType('desc', desc, 'string');\r\n  assertType('data', data, 'object');\r\n  \r\n  if (json.data) {\r\n    const { bizStatus, status } = json.data;\r\n      assertType('bizStatus', bizStatus, 'object');\r\n      assertType('status', status, 'object');\r\n  } else {\r\n    assertFail('Expect response body to have data');\r\n  }\r\n  \r\n  if (json.resultMsg) printInfo('msg', json.resultMsg);\r\n  if (json.detailMsg) printInfo('msg', json.detailMsg);\r\n}\r\n\r\n\r\n\r\n\r\n"
+							}
+						}
+					],
+					"request": {
+						"url": "{{IM_SERVER}}/im/monitor/getstatus",
+						"method": "POST",
+						"header": [
+							{
+								"key": "User-Agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

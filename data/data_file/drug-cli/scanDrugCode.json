@@ -1,0 +1,30 @@
+[{
+  "caseTitle": "title",
+  "caseDescription": "",
+  "statusCode": 200,
+  "timeout": 2000,
+  "mustHave": [
+    { "elementPath": "json.resultCode", "type": "number", "value": 1 },
+    { "elementPath": "json.data", "type": "object", "value": "" }
+  ],
+  "mustNotHave": [
+    { "elementPath": "", "type": "", "value": "" }
+  ],
+  "param1": "{{ENV_VAR}}",
+  "param2": ""
+}, {
+  "caseTitle": "【非法】这是非法用例",
+  "caseDescription": "",
+  "statusCode": 200,
+  "timeout": 2000,
+  "mustHave": [
+    { "elementPath": "json.resultCode", "type": "number", "value": "" },
+    { "elementPath": "json.detailMsg", "type": "string", "value": "" }
+  ],
+  "mustNotHave": [
+    { "elementPath": "json.resultCode", "type": "", "value": 1 },
+    { "elementPath": "json.data", "type": "", "value": "" }
+  ],
+  "param1": "{{ENV_VAR2}}",
+  "param2": ""
+}]

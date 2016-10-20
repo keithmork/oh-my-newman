@@ -1,0 +1,869 @@
+{
+	"variables": [],
+	"info": {
+		"name": "auth-cli",
+		"_postman_id": "3bb9f01e-1aee-e2c1-e3fd-80602279bfe4",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "001_register",
+			"description": "",
+			"item": [
+				{
+					"name": "/auth/register 手机号注册",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": "//use:tests_json"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": "//use:pre_register"
+							}
+						}
+					],
+					"request": {
+						"url": "{{APP_SERVER}}/auth/register",
+						"method": "POST",
+						"header": [
+							{
+								"key": "User-Agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "accountNum",
+									"value": "{{accountNum}}",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "password",
+									"value": "{{password}}",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "userType",
+									"value": "{{userType}}",
+									"type": "text",
+									"enabled": true
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "002_registerByWeChat",
+			"description": "",
+			"item": [
+				{
+					"name": "/auth/registerByWeChat 微信注册",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": "//use:tests_json\n"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": "//use:pre_register\n"
+							}
+						}
+					],
+					"request": {
+						"url": "{{APP_SERVER}}/auth/registerByWeChat",
+						"method": "POST",
+						"header": [
+							{
+								"key": "User-Agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "accountNum",
+									"value": "{{accountNum}}",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "userType",
+									"value": "{{userType}}",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "unionid",
+									"value": "{{unionid}}",
+									"type": "text",
+									"enabled": true
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "003_genKey",
+			"description": "",
+			"item": [
+				{
+					"name": "/auth/genKey",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": "//use:tests_json\n"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": "//use:pre_register\n"
+							}
+						}
+					],
+					"request": {
+						"url": "{{APP_SERVER}}/auth/genKey",
+						"method": "POST",
+						"header": [
+							{
+								"key": "User-Agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "accountType",
+									"value": "{{accountType}}",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "accountNum",
+									"value": "{{accountNum}}",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "password",
+									"value": "{{password}}",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "userType",
+									"value": "{{userType}}",
+									"type": "text",
+									"enabled": true
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "004_genToken",
+			"description": "",
+			"item": [
+				{
+					"name": "/auth/genToken 生成access_token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": "//use:tests_json\n"
+							}
+						}
+					],
+					"request": {
+						"url": "{{APP_SERVER}}/auth/genToken",
+						"method": "POST",
+						"header": [
+							{
+								"key": "User-Agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "userId",
+									"value": "{{userId}}",
+									"type": "text",
+									"enabled": true
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "005_getUserId",
+			"description": "",
+			"item": [
+				{
+					"name": "/auth/getUserId",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": "//use:tests_json\n"
+							}
+						}
+					],
+					"request": {
+						"url": "{{APP_SERVER}}/auth/getUserId",
+						"method": "POST",
+						"header": [
+							{
+								"key": "User-Agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "text",
+									"enabled": true
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "006_verifyToken",
+			"description": "",
+			"item": [
+				{
+					"name": "/auth/verifyToken",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": "//use:tests_json\n"
+							}
+						}
+					],
+					"request": {
+						"url": "{{APP_SERVER}}/auth/verifyToken",
+						"method": "POST",
+						"header": [
+							{
+								"key": "User-Agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "accessToken",
+									"value": "{{accessToken}}",
+									"type": "text",
+									"enabled": true
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "007_updatePwd",
+			"description": "",
+			"item": [
+				{
+					"name": "/auth/updatePwd",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": "//use:tests_json\n"
+							}
+						}
+					],
+					"request": {
+						"url": "{{APP_SERVER}}/auth/updatePwd",
+						"method": "POST",
+						"header": [
+							{
+								"key": "User-Agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "userId",
+									"value": "{{userId}}",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "oldPwd",
+									"value": "{{oldPwd}}",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "newPwd",
+									"value": "{{newPwd}}",
+									"type": "text",
+									"enabled": true
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "008_resetPwd",
+			"description": "",
+			"item": [
+				{
+					"name": "/auth/resetPwd",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": "//use:tests_json\n"
+							}
+						}
+					],
+					"request": {
+						"url": "{{APP_SERVER}}/auth/resetPwd",
+						"method": "POST",
+						"header": [
+							{
+								"key": "User-Agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "accountNum",
+									"value": "{{accountNum}}",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "userType",
+									"value": "{{userType}}",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "newPwd",
+									"value": "{{newPwd}}",
+									"type": "text",
+									"enabled": true
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "009_updateTel",
+			"description": "",
+			"item": [
+				{
+					"name": "/auth/updateTel",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": "//use:tests_json\n"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": "//use:pre_register\n"
+							}
+						}
+					],
+					"request": {
+						"url": "{{APP_SERVER}}/auth/updateTel",
+						"method": "POST",
+						"header": [
+							{
+								"key": "User-Agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "accountNum",
+									"value": "{{accountNum}}",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "userId",
+									"value": "{{userId}}",
+									"type": "text",
+									"enabled": true
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "010_getAuth",
+			"description": "",
+			"item": [
+				{
+					"name": "/auth/getAuth",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": "//use:tests_json\n"
+							}
+						}
+					],
+					"request": {
+						"url": "{{APP_SERVER}}/auth/getAuth",
+						"method": "POST",
+						"header": [
+							{
+								"key": "User-Agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "accountType",
+									"value": "{{accountType}}",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "accountNum",
+									"value": "{{accountNum}}",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "userType",
+									"value": "{{userType}}",
+									"type": "text",
+									"enabled": true
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "011_verifyAccount",
+			"description": "",
+			"item": [
+				{
+					"name": "/auth/verifyAccount",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": "//use:tests_json\n"
+							}
+						}
+					],
+					"request": {
+						"url": "{{APP_SERVER}}/auth/verifyAccount",
+						"method": "POST",
+						"header": [
+							{
+								"key": "User-Agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "accountNum",
+									"value": "{{accountNum}}",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "password",
+									"value": "{{password}}",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "userType",
+									"value": "{{userType}}",
+									"type": "text",
+									"enabled": true
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "012_getAuthByUserId",
+			"description": "",
+			"item": [
+				{
+					"name": "/auth/getAuthByUserId",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": "//use:tests_json\n"
+							}
+						}
+					],
+					"request": {
+						"url": "{{APP_SERVER}}/auth/getAuthByUserId",
+						"method": "POST",
+						"header": [
+							{
+								"key": "User-Agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "accountType",
+									"value": "{{accountType}}",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "userId",
+									"value": "{{userId}}",
+									"type": "text",
+									"enabled": true
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "013_getUserType",
+			"description": "",
+			"item": [
+				{
+					"name": "/auth/getUserType",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": "//use:tests_json\n"
+							}
+						}
+					],
+					"request": {
+						"url": "{{APP_SERVER}}/auth/getUserType",
+						"method": "POST",
+						"header": [
+							{
+								"key": "User-Agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "userId",
+									"value": "{{userId}}",
+									"type": "text",
+									"enabled": true
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "014_expire",
+			"description": "",
+			"item": [
+				{
+					"name": "/auth/expire",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": "//use:tests_json\n"
+							}
+						}
+					],
+					"request": {
+						"url": "{{APP_SERVER}}/auth/expire",
+						"method": "POST",
+						"header": [
+							{
+								"key": "User-Agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "accessToken",
+									"value": "{{accessToken}}",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "ttl",
+									"value": "{{ttl}}",
+									"type": "text",
+									"enabled": true
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "015_resetTokenExpire",
+			"description": "",
+			"item": [
+				{
+					"name": "/auth/resetTokenExpire",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": "//use:tests_json\n"
+							}
+						}
+					],
+					"request": {
+						"url": "{{APP_SERVER}}/auth/resetTokenExpire",
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "accessToken",
+									"value": "{{accessToken}}",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "userId",
+									"value": "{{userId}}",
+									"type": "text",
+									"enabled": true
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "016_syncToken",
+			"description": "",
+			"item": [
+				{
+					"name": "/auth/syncToken",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": "//use:tests_json\n"
+							}
+						}
+					],
+					"request": {
+						"url": "{{APP_SERVER}}/auth/syncToken",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "User-Agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{{param}}"
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "017_delete",
+			"description": "",
+			"item": [
+				{
+					"name": "/auth/delete",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": "//use:tests_json\n"
+							}
+						}
+					],
+					"request": {
+						"url": "{{APP_SERVER}}/auth/delete",
+						"method": "POST",
+						"header": [
+							{
+								"key": "User-Agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "text",
+									"enabled": true
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "018_sendSmsCode",
+			"description": "",
+			"item": []
+		},
+		{
+			"name": "019_verifyCode",
+			"description": "",
+			"item": []
+		}
+	]
+}

@@ -1,0 +1,85 @@
+[
+  {
+    "_title": "【不明确】新旧密码相同",
+    "_description": "发送请求的速度比处理速度快，真的把密码改掉会导致之后出错，建议用Postman测正常场景",
+    "_statusCode": 200,
+    "_timeout": 5000,
+    "_mustHave": [
+      { "elementPath": "json.resultCode", "type": "number", "value": 1 },
+      { "elementPath": "json.data", "type": "boolean", "value": true }
+    ],
+    "_mustNotHave": [
+    ],
+    "userId": "{{PATIENT2_USERID}}",
+    "oldPwd": "{{PWD_LOGIN}}",
+    "newPwd": "{{PWD_LOGIN}}"
+  },
+  {
+    "_title": "【非法】旧密码为空",
+    "_description": "不明确：旧密码/新密码为空格、新密码为空等都能修改成功",
+    "_statusCode": 200,
+    "_timeout": 5000,
+    "_mustHave": [
+      { "elementPath": "json.detailMsg", "type": "string", "value": "" },
+      { "elementPath": "json.resultCode", "type": "number", "value": "" }
+    ],
+    "_mustNotHave": [
+      { "elementPath": "json.data", "type": "", "value": "" },
+      { "elementPath": "json.resultCode", "type": "", "value": 1 }
+    ],
+    "userId": "{{PATIENT2_USERID}}",
+    "oldPwd": "",
+    "newPwd": "{{PWD_LOGIN}}"
+  },
+  {
+    "_title": "【非法】旧密码错误",
+    "_description": "注入删库",
+    "_statusCode": 200,
+    "_timeout": 5000,
+    "_mustHave": [
+      { "elementPath": "json.detailMsg", "type": "string", "value": "" },
+      { "elementPath": "json.resultCode", "type": "number", "value": "" }
+    ],
+    "_mustNotHave": [
+      { "elementPath": "json.data", "type": "", "value": "" },
+      { "elementPath": "json.resultCode", "type": "", "value": 1 }
+    ],
+    "userId": "{{PATIENT2_USERID}}",
+    "oldPwd": "db.Auth.drop()",
+    "newPwd": "{{PWD_LOGIN}}"
+  },
+  {
+    "_title": "【非法】userId为空",
+    "_description": "",
+    "_statusCode": 200,
+    "_timeout": 5000,
+    "_mustHave": [
+      { "elementPath": "json.detailMsg", "type": "string", "value": "" },
+      { "elementPath": "json.resultCode", "type": "number", "value": "" }
+    ],
+    "_mustNotHave": [
+      { "elementPath": "json.data", "type": "", "value": "" },
+      { "elementPath": "json.resultCode", "type": "", "value": 1 }
+    ],
+    "userId": "",
+    "oldPwd": "{{PWD_LOGIN}}",
+    "newPwd": "Zh0ngc@1p1@0"
+  },
+  {
+    "_title": "【非法】userId不存在",
+    "_description": "注入删库",
+    "_statusCode": 200,
+    "_timeout": 5000,
+    "_mustHave": [
+      { "elementPath": "json.detailMsg", "type": "string", "value": "" },
+      { "elementPath": "json.resultCode", "type": "number", "value": "" }
+    ],
+    "_mustNotHave": [
+      { "elementPath": "json.data", "type": "", "value": "" },
+      { "elementPath": "json.resultCode", "type": "", "value": 1 }
+    ],
+    "userId": "db.Auth.drop()",
+    "oldPwd": "{{PWD_LOGIN}}",
+    "newPwd": "Zh0ngc@1p1@0"
+  }
+]
