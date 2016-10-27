@@ -8,10 +8,10 @@
 /*
  // 随机手机号
 
- const randInt = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
+const randInt = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
 
- const randomMobile = `18${randInt(100000000, 999999999)}`;
- postman.setEnvironmentVariable('randomMobile', randomMobile);
+const randomMobile = `14${randInt(100000000, 999999999)}`;
+postman.setEnvironmentVariable('randomMobile', randomMobile);
 
  // -----------------------------------------------------------------------------------
 

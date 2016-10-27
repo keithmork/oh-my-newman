@@ -23,11 +23,11 @@
     "test": "istanbul cover node_modules/jasmine/bin/jasmine.js"
   },
   "author": "Keith Mo <keith.mork@gmail.com> (https://keithmo.me)",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
-    "newman": "^3.1.2",
     "command-line-args": "^3.0.1",
-    "command-line-usage": "^3.0.4"
+    "command-line-usage": "^3.0.5",
+    "newman": "^3.2.0"
   },
   "devDependencies": {
     "chai": "*",
@@ -37,7 +37,7 @@
     "eslint-plugin-jsx-a11y": "^2.2.3",
     "eslint-plugin-react": "^6.4.1",
     "istanbul": "^0.4.5",
-    "mocha": "^3.1.2"
+    "mocha": "*"
   },
   "engines": {
     "node": ">=6"

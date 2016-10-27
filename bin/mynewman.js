@@ -8,7 +8,8 @@
 const fs = require('fs');
 const path = require('path');
 const utils = require('../lib/newman-utils');
-const cli = require('../config/cli');
+const cli = require('../lib/cli');
+const fsUtils = require('../lib/fs-utils');
 
 // command line args
 const ARGS = cli.getCliArgs();
@@ -17,7 +18,7 @@ const ARGS = cli.getCliArgs();
 
 const renameReportFile = (oldFile, prefix) => {
   const newFile = path.join(path.dirname(oldFile), prefix + path.basename(oldFile));
-  if (utils.isFile(oldFile)) {
+  if (fsUtils.isFile(oldFile)) {
     try {
       fs.renameSync(oldFile, newFile);
       return newFile;
